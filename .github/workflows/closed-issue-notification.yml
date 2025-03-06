@@ -14,7 +14,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: TIME_LETTER_BOT
           DISCORD_AVATAR: https://github.com/pknu-wap/WAPP/blob/main/image/icon.png?raw=true
-          DISCORD_EMBEDS:
+          DISCORD_EMBEDS: |
             [
               {
                 "title": "종료 이슈 사항 : ${{ github.event.issue.title }}",
