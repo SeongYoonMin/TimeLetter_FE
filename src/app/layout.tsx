@@ -1,5 +1,7 @@
+import DefaultLayout from "@/components/layout/DefaultLayout";
 import "./globals.css";
-import QueryProvider from "./provider/QueryProvider";
+import QueryProvider from "@/providers/QueryProvider";
+import FirstVisitorProvider from "@/providers/FirstVisitorProvider";
 
 export default function RootLayout({
   children,
@@ -9,7 +11,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={``}>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <FirstVisitorProvider>
+            <DefaultLayout>{children}</DefaultLayout>
+          </FirstVisitorProvider>
+        </QueryProvider>
       </body>
     </html>
   );
