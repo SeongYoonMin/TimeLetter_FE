@@ -1,8 +1,10 @@
-name: Opend Issue Notification
+name: Opened Issue Notification
+
 on:
   issues:
     types:
-      - opened
+      - opened  # 이슈가 열릴 때 실행
+
 jobs:
   create-issue:
     name: Discord Notification
@@ -14,7 +16,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: TIME_LETTER_BOT
           DISCORD_AVATAR: https://github.com/pknu-wap/WAPP/blob/main/image/icon.png?raw=true
-          DISCORD_EMBEDS: |
+          DISCORD_EMBEDS: >
             [
               {
                 "title": "신규 이슈 사항 : ${{ github.event.issue.title }}",
