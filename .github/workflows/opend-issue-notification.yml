@@ -30,7 +30,7 @@ jobs:
                     "name": "AUTHOR",
                     "value": "${{ github.event.issue.user.login }}",
                     "inline": true,
-                  },
+                  }
                 ]
               }
             ]
