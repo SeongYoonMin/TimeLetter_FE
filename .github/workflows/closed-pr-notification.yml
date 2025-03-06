@@ -16,7 +16,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: TIME_LETTER_BOT
           DISCORD_AVATAR: https://github.com/pknu-wap/WAPP/blob/main/image/icon.png?raw=true
-          DISCORD_EMBEDS: >
+          DISCORD_EMBEDS: |
             [
               {
                 "title": "${{ github.event.pull_request.merged == true && '종료된 PR' || '반려된 PR' }} : ${{ github.event.pull_request.title }}",
