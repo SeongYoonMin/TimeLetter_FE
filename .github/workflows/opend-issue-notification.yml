@@ -24,12 +24,12 @@ jobs:
                   {
                     "name": "ISSUE NUMBER",
                     "value": "#${{ github.event.issue.number }}",
-                    "inline": true,
+                    "inline": true
                   },
                   {
                     "name": "AUTHOR",
                     "value": "${{ github.event.issue.user.login }}",
-                    "inline": true,
+                    "inline": true
                   }
                 ]
               }
