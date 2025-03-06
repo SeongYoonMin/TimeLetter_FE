@@ -1,0 +1,19 @@
+name: Opened PR Notification
+
+on:
+  pull_request:
+    types:
+      - opened  # PR이 새로 생성될 때 실행
+
+jobs:
+  create-issue:
+    name: Discord Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send PR Notification
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: TIME_LETTER_BOT
+          DISCORD_AVATAR: https://github.com/pknu-wap/WAPP/blob/main/image/icon.png?raw=true
+          DISCORD_EMBEDS: '[{"title":"새로운 PR 요청: ${{ github.event.pull_request.title }}","color":16068656,"description":"${{ github.event.pull_request.html_url }}","fields":[{"name":"PR NUMBER","value":"#${{ github.event.pull_request.number }}","inline":true},{"name":"AUTHOR","value":"${{ github.event.pull_request.user.login }}","inline":true}]}]'
