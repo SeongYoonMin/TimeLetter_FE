@@ -1,8 +1,10 @@
-name: Opend Issue Notification
+name: Closed Issue Notification
+
 on:
   issues:
     types:
-      - closed
+      - closed  # 이슈가 닫힐 때 실행
+
 jobs:
   create-issue:
     name: Discord Notification
@@ -14,23 +16,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: TIME_LETTER_BOT
           DISCORD_AVATAR: https://github.com/pknu-wap/WAPP/blob/main/image/icon.png?raw=true
-          DISCORD_EMBEDS: |
-            [
-              {
-                "title": "종료 이슈 사항 : ${{ github.event.issue.title }}",
-                "color": 16068656,
-                "description": "${{ github.event.issue.html_url }}",
-                "fields": [
-                  {
-                    "name": "ISSUE NUMBER",
-                    "value": "#${{ github.event.issue.number }}",
-                    "inline": true,
-                  },
-                  {
-                    "name": "AUTHOR",
-                    "value": "${{ github.event.issue.user.login }}",
-                    "inline": true,
-                  }
-                ]
-              }
-            ]
+          DISCORD_EMBEDS: '[{"title":"종료 이슈 사항: ${{ github.event.issue.title }}","color":16068656,"description":"${{ github.event.issue.html_url }}","fields":[{"name":"ISSUE NUMBER","value":"#${{ github.event.issue.number }}","inline":true},{"name":"AUTHOR","value":"${{ github.event.issue.user.login }}","inline":true}]}]'
