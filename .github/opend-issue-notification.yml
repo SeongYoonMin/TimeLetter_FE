@@ -2,7 +2,7 @@ name: Opend Issue Notification
 on:
   issues:
     types:
-      - opend
+      - opened
 jobs:
   create-issue:
     name: Discord Notification
