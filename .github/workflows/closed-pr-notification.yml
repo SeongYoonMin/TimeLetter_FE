@@ -6,8 +6,8 @@ on:
       - closed # PR이 닫힐 때 실행
 
 jobs:
-  notify-discord:
-    name: Discord Notification
+  close-pull-request:
+    name: Discord Notification - Close PR
     runs-on: ubuntu-latest
     steps:
       - name: Send Closed PR Notification
