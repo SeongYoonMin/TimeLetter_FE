@@ -6,8 +6,8 @@ on:
       - closed  # 이슈가 닫힐 때 실행
 
 jobs:
-  create-issue:
-    name: Discord Notification
+  closed-issue:
+    name: Discord Notification - Close Issue
     runs-on: ubuntu-latest
     steps:
       - name: Send Issue

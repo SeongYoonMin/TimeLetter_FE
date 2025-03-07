@@ -6,8 +6,8 @@ on:
       - opened  # PR이 새로 생성될 때 실행
 
 jobs:
-  create-issue:
-    name: Discord Notification
+  create-pull-request:
+    name: Discord Notification - Create PR
     runs-on: ubuntu-latest
     steps:
       - name: Send PR Notification
