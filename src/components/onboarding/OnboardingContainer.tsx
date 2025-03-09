@@ -110,7 +110,7 @@ const OnboardingContainer = ({
 
       {/* 버튼 */}
 
-      {step !== 3 ? (
+      {step !== steps.length - 1 ? (
         <button
           onClick={nextStep}
           type="button"
