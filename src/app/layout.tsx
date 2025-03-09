@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={suitLocalFont.className}>
+      <body className={suitLocalFont.className + " bg-[#F7F7F7]"}>
         <QueryProvider>
           <FirstVisitorProvider>
             <DefaultLayout>{children}</DefaultLayout>
