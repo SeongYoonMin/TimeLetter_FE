@@ -1,19 +1,19 @@
 import { createStore } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface FirstVisitorProps {
+interface IFirstVisitorProps {
   firstVisitor: boolean;
 }
 
-interface FirstVisitorActions {
+interface IFirstVisitorActions {
   initFirstVisitor: (firstVisitor: boolean) => void;
   setFirstVisitor: (firstVisitor: boolean) => void;
 }
 
-export type FirstVisitorStore = FirstVisitorProps & FirstVisitorActions;
+export type FirstVisitorStore = IFirstVisitorProps & IFirstVisitorActions;
 
-export const createFirstVisitorStore = (initialState?: FirstVisitorProps) => {
-  const DEFAULT_STATE: FirstVisitorProps = {
+export const createFirstVisitorStore = (initialState?: IFirstVisitorProps) => {
+  const DEFAULT_STATE: IFirstVisitorProps = {
     firstVisitor: true,
   };
   return createStore<FirstVisitorStore>()(
