@@ -1,3 +1,5 @@
+"use server";
+
 import crypto from "crypto";
 
 const algorithm = process.env.CRYPTO_ALGORITHM as string;
