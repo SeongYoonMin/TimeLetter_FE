@@ -22,3 +22,11 @@
     font-weight: 400;
   }
 }
+
+.swiper-slide {
+  /* width: auto !important; */
+}
+.swiper-slide.swiper-slide-prev, .swiper-slide.swiper-slide-next {
+  opacity: 0.6;
+  transition: .4s all;
+} 
