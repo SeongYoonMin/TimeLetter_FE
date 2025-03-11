@@ -5,6 +5,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { toast } from "react-toastify";
 
 interface ILoginInput {
   userId: string;
@@ -19,22 +20,8 @@ const schema = z.object({
   password: z
     .string()
     .min(6, "비밀번호는 최소 6자 이상이어야 합니다")
-    .regex(/^[a-zA-Z0-9]+$/, "올바른 비밀번호를 입력해주세요."),
+    .regex(/^[a-zA-Z0-9!@#$%^&*]+$/, "올바른 비밀번호를 입력해주세요."),
 });
-
-// const LoginInput: React.FC<{
-//   className?: string;
-//   type: string;
-//   placeholder: string;
-// }> = ({ className, type, placeholder }) => {
-//   return (
-//     <input
-//       className={`${className} font-semibold p-6 bg-[#F7F7F7] placeholder:text-[#D2D2D2] text-[#5E5B5B] rounded-[20px] w-full`}
-//       type={type}
-//       placeholder={placeholder}
-//     />
-//   );
-// };
 
 const LoginForm = () => {
   const {
@@ -45,6 +32,7 @@ const LoginForm = () => {
   } = useForm({
     resolver: zodResolver(schema),
   });
+  const toastify = toast;
   const watchUserId = watch("userId");
   const watchPassword = watch("password");
   const onLoginSubmit: SubmitHandler<ILoginInput> = async (data) => {
@@ -60,7 +48,7 @@ const LoginForm = () => {
       console.log(user);
     } else {
       const getError: { error: string } = await response.json();
-      console.log(getError.error);
+      toastify.error(getError.error);
     }
   };
   return (
@@ -104,7 +92,7 @@ const LoginForm = () => {
         <button
           type="submit"
           disabled={!watchUserId || !watchPassword}
-          className="w-full py-[22px] disabled:bg-[#F7F7F7] rounded-[20px] disabled:text-[#8A8686] bg-[#FF9225] text-white"
+          className="w-full py-[22px] disabled:bg-[#F7F7F7] rounded-[20px] disabled:text-[#8A8686] bg-[#FF9225] text-white disabled:cursor-default cursor-pointer"
         >
           확인
         </button>
