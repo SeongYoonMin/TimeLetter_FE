@@ -115,7 +115,7 @@ const OnboardingContainer = ({
           onClick={nextStep}
           type="button"
           disabled={step === steps.length - 1}
-          className="bg-[#FF9225] w-full h-[68px] text-body flex items-center justify-center rounded-[20px] text-white"
+          className="bg-[#FF9225] w-full h-[68px] text-body flex items-center justify-center rounded-[20px] text-white cursor-pointer"
         >
           다음
         </button>
@@ -123,7 +123,7 @@ const OnboardingContainer = ({
         <button
           type="button"
           onClick={handleFirstVisitor}
-          className="bg-[#FF9225] w-full h-[68px] text-body flex items-center justify-center rounded-[20px] text-white"
+          className="bg-[#FF9225] w-full h-[68px] text-body flex items-center justify-center rounded-[20px] text-white cursor-pointer"
         >
           시작하기
         </button>
