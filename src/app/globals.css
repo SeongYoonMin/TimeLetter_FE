@@ -1,5 +1,60 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #ff9225;
+  --color-secondary: #5e5b5b;
+  --color-pressed: #ffdba8;
+  --color-notification: #3c3c3c;
+  --color-icon: #c5c5c5;
+  --color-board: #f7f7f7;
+  --color-point: #ee7700;
+  --color-error: #ff371b;
+
+  --color-orange-50: #fff4e9;
+  --color-orange-100: #ffddbb;
+  --color-orange-200: #ffcd9b;
+  --color-orange-300: #ffb66d;
+  --color-orange-400: #ffa851;
+  --color-orange-500: #ff9225;
+  --color-orange-600: #e88522;
+  --color-orange-700: #b5681a;
+  --color-orange-800: #8c5014;
+  --color-orange-900: #6b3d10;
+
+  --color-notification-grey-50: #ececec;
+  --color-notification-grey-100: #c3c3c3;
+  --color-notification-grey-200: #a5a5a5;
+  --color-notification-grey-300: #7c7c7c;
+  --color-notification-grey-400: #636363;
+  --color-notification-grey-500: #3c3c3c;
+  --color-notification-grey-600: #373737;
+  --color-notification-grey-700: #2b2b2b;
+  --color-notification-grey-800: #212121;
+  --color-notification-grey-900: #191919;
+
+  --color-icon-grey-50: #f9f9f9;
+  --color-icon-grey-100: #ededed;
+  --color-icon-grey-200: #e4e4e4;
+  --color-icon-grey-300: #d8d8d8;
+  --color-icon-grey-400: #d1d1d1;
+  --color-icon-grey-500: #c5c5c5;
+  --color-icon-grey-600: #b3b3b3;
+  --color-icon-grey-700: #8c8c8c;
+  --color-icon-grey-800: #6c6c6c;
+  --color-icon-grey-900: #535353;
+
+  --color-error-50: #ffebe8;
+  --color-error-100: #ffc1b8;
+  --color-error-200: #ffa396;
+  --color-error-300: #ff7966;
+  --color-error-400: #ff5f49;
+  --color-error-500: #ff371b;
+  --color-error-600: #e83219;
+  --color-error-700: #b52713;
+  --color-error-800: #8c1e0f;
+  --color-error-900: #6b170b;
+}
+
 @layer components {
   .text-header {
     font-size: 24px;
@@ -21,12 +76,19 @@
     line-height: 18px;
     font-weight: 400;
   }
+  .bg-default-gradient {
+    @apply bg-gradient-to-b from-[#FFEACC] to-[#FFF];
+  }
+  .bg-default {
+    background: #fff;
+  }
 }
 
 .swiper-slide {
   /* width: auto !important; */
 }
-.swiper-slide.swiper-slide-prev, .swiper-slide.swiper-slide-next {
+.swiper-slide.swiper-slide-prev,
+.swiper-slide.swiper-slide-next {
   opacity: 0.6;
-  transition: .4s all;
-} 
+  transition: 0.4s all;
+}
