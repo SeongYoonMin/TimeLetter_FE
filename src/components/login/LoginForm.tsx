@@ -6,6 +6,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "react-toastify";
+import { useAuthStore } from "@/providers/AuthProvider";
+import { useRouter } from "next/navigation";
 
 interface ILoginInput {
   userId: string;
@@ -32,6 +34,8 @@ const LoginForm = () => {
   } = useForm({
     resolver: zodResolver(schema),
   });
+  const authStore = useAuthStore((store) => store);
+  const router = useRouter();
   const toastify = toast;
   const watchUserId = watch("userId");
   const watchPassword = watch("password");
@@ -44,8 +48,17 @@ const LoginForm = () => {
       body: formData,
     });
     if (response.ok) {
-      const user = await response.json();
-      console.log(user);
+      
+      const user: {
+        id: number;
+        nickName: string;
+        userId: string;
+        background: string;
+        capsule: string;
+      } = await response.json();
+      authStore.setAuthorization({ isLogin: true, ...user });
+      toastify.success(`${user.nickName}님 환영합니다!`);
+      router.push("/");
     } else {
       const getError: { error: string } = await response.json();
       toastify.error(getError.error);
