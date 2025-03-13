@@ -18,7 +18,7 @@ export type RegisterStore = IRegisterProps & IRegisterActions;
 export const createRegisterStore = (initialState?: IRegisterProps) => {
   const DEFAULT_STATE: IRegisterProps = {
     background: "/img/pond.png",
-    capsule: "/img/circle.png",
+    capsule: "circle",
     nickname: "",
   };
   return createStore<RegisterStore>((set) => ({
