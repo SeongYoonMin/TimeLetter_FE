@@ -55,6 +55,7 @@ const LoginForm = () => {
         userId: string;
         background: string;
         capsule: string;
+        uniqueId: string;
       } = await response.json();
       authStore.setAuthorization({ isLogin: true, ...user });
       toastify.success(`${user.nickName}님 환영합니다!`);
