@@ -79,7 +79,7 @@ const OnboardingContainer = ({
   const nextStep = () =>
     setStep((prev) => Math.min(prev + 1, steps.length - 1));
   return (
-    <div className="flex items-center h-full justify-between flex-col px-5 py-10">
+    <div className="flex items-center h-full justify-between flex-col px-5 py-10 bg-default-gradient">
       {/* Stepper UI */}
       <div className="flex items-center justify-center gap-1 text-[#441606] text-body">
         <p>{step + 1}</p>
