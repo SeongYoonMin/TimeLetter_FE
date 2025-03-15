@@ -9,6 +9,7 @@ export async function POST(request: Request) {
   const capsule = formData.get("capsule") as string;
   const nickName = formData.get("nickname") as string;
   const encryptPassword = await actionEncrypt(password);
+  const uniqueId = await actionEncrypt(userId);
 
   const checkUser = await prisma.capsuler.findUnique({
     where: {
@@ -24,6 +25,7 @@ export async function POST(request: Request) {
 
   const register = await prisma.capsuler.create({
     data: {
+      uniqueId,
       userId,
       password: encryptPassword,
       background,

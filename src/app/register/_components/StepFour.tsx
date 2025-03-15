@@ -38,6 +38,13 @@ const scheme = z
         path: ["passwordConfirm"],
       });
     }
+    if (arg.id === arg.password) {
+      return ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "아이디와 동일한 비밀번호는 사용할 수 없습니다.",
+        path: ["password"],
+      });
+    }
   });
 
 const StepFour = ({

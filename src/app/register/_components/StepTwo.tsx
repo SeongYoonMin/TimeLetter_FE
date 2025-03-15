@@ -7,6 +7,7 @@ import StepHeader from "./StepHeader";
 interface ICardItem {
   id: number;
   title: string;
+  name: string;
   src: string;
 }
 
@@ -14,26 +15,31 @@ const cardList: ICardItem[] = [
   {
     id: 0,
     title: "원형 모양",
+    name: "circle",
     src: "/img/circle.png",
   },
   {
     id: 1,
     title: "세모 모양",
+    name: "triangle",
     src: "/img/triangle.png",
   },
   {
     id: 2,
     title: "원통 모양",
+    name: "bowl",
     src: "/img/bowl.png",
   },
   {
     id: 3,
     title: "네모 모양",
+    name: "square",
     src: "/img/square.png",
   },
   {
     id: 4,
     title: "하트 모양",
+    name: "heart",
     src: "/img/heart.png",
   },
 ];
@@ -45,8 +51,8 @@ const CardItems = ({ card }: { card: ICardItem }) => {
         src={card.src}
         alt={card.title}
         className="flex-1 rounded-xl w-full"
-        width={200}
-        height={300}
+        width={400}
+        height={400}
       />
       <p className="text-body font-semibold text-[#8A8686] lg:text-2xl">
         {card.title}
@@ -72,7 +78,7 @@ const StepTwo = ({
 }) => {
   const [activeIndex, setActiveIndex] = React.useState(capsule);
   const handleSlideChange = (swiper: TypeSwiper) => {
-    setActiveIndex(cardList[swiper.realIndex].src);
+    setActiveIndex(cardList[swiper.realIndex].name);
   };
   return (
     <div className="w-full h-full relative flex flex-col items-center justify-between">

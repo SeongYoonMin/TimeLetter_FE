@@ -1,12 +1,13 @@
 import { createStore } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface IAuthProps {
-  id: number;
-  nick_name: string;
-  user_id: string;
+  isLogin: boolean;
+  uniqueId: string;
+  nickName: string;
+  userId: string;
   background: string;
-  ribbon: string;
+  capsule: string;
 }
 
 interface IAuthActions {
@@ -18,11 +19,12 @@ export type AuthStore = IAuthProps & IAuthActions;
 
 export const createAuthStore = (initialState?: IAuthProps) => {
   const DEFAULT_STATE: IAuthProps = {
-    id: 0,
-    nick_name: "",
-    user_id: "",
+    isLogin: false,
+    uniqueId: "",
+    nickName: "",
+    userId: "",
     background: "",
-    ribbon: "",
+    capsule: "",
   };
   return createStore<AuthStore>()(
     persist(
@@ -32,7 +34,10 @@ export const createAuthStore = (initialState?: IAuthProps) => {
         initAuthorization: () => set({ ...DEFAULT_STATE }),
         setAuthorization: (userData: IAuthProps) => set({ ...userData }),
       }),
-      { name: "login-user" }
+      {
+        name: "login-user",
+        storage: createJSONStorage(() => sessionStorage),
+      }
     )
   );
 };
