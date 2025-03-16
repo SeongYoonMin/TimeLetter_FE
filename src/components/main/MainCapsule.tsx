@@ -1,5 +1,15 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+
+const ImageBox = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="relative z-10 w-[200px] lg:w-full lg:max-w-[400px]">
+      {children}
+    </div>
+  );
+};
 
 const MainCapsule = ({
   postCount,
@@ -10,10 +20,54 @@ const MainCapsule = ({
   newCount: number;
   capsule: string;
 }) => {
-  if (postCount === 0) return <div>타임캡슐이 없습니다.</div>;
-  if (postCount === 1) return <div>타임캡슐이 1개 있습니다.</div>;
-  if (postCount === 2) return <div>타임캡슐이 2개 있습니다.</div>;
-  return <div>MainCapsule</div>;
+  console.log(newCount);
+  if (postCount === 0)
+    return (
+      <ImageBox>
+        <Image
+          width={400}
+          height={400}
+          alt={capsule}
+          className="w-full"
+          src={`/img/${capsule}.png`}
+        />
+      </ImageBox>
+    );
+  if (postCount === 1)
+    return (
+      <ImageBox>
+        <Image
+          width={400}
+          height={400}
+          alt={capsule}
+          className="w-full"
+          src={`/img/${capsule}_one.png`}
+        />
+      </ImageBox>
+    );
+  if (postCount === 2)
+    return (
+      <ImageBox>
+        <Image
+          width={400}
+          height={400}
+          alt={capsule}
+          className="w-full"
+          src={`/img/${capsule}_two.png`}
+        />
+      </ImageBox>
+    );
+  return (
+    <ImageBox>
+      <Image
+        width={400}
+        height={400}
+        alt={capsule}
+        className="w-full"
+        src={`/img/${capsule}_multi.png`}
+      />
+    </ImageBox>
+  );
 };
 
 export default MainCapsule;
