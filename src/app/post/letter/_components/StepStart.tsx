@@ -5,15 +5,21 @@ import { Button } from "@/components/ui/button";
 import { usePostLetterStore } from "@/providers/PostLetterProvider";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-const StepStart = ({ backPage }: { backPage: () => void }) => {
-  const {
-    background,
-    capsule,
-  } = usePostLetterStore((store) => store);
+const StepStart = ({ nextPage }: { nextPage: () => void }) => {
   const router = useRouter();
-  
+  const { background, capsule, nickname } = usePostLetterStore(
+    (store) => store
+  );
+  const [isLoading, setIsLoading] = useState(true);
+  const backPage = useCallback(() => {
+    router.back();
+  }, [router]);
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+  if (isLoading) return null;
   return (
     <div className="w-full flex flex-col justify-between items-center relative pt-5 pb-4 px-5 box-border h-full">
       <PostLetterHeader backPage={backPage} className="relative z-10" />
@@ -27,20 +33,20 @@ const StepStart = ({ backPage }: { backPage: () => void }) => {
       <div className="w-full h-full absolute z-[1] inset-0 bg-gradient-to-b to-white from-transparent"></div>
       <div className="relative z-10">
         <Image
-          src={`/img/${capsule}_one.png`}
+          src={`/img/${capsule}.png`}
           width={400}
           height={400}
           className="w-[200px] lg:w-[400px]"
           alt={capsule}
         />
         <p className="text-header text-center">
-          친구의 타임캡슐에
+          {nickname}님이
           <br />
-          편지를 넣었어요
+          편지를 기다리고 있어요
         </p>
       </div>
-      <Button onClick={() => router.push("/login")} className="relative z-10">
-        나도 타임캡슐 만들기
+      <Button onClick={nextPage} className="relative z-10">
+        다음
       </Button>
     </div>
   );

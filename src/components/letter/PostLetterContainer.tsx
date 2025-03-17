@@ -24,7 +24,7 @@ const PostLetterContainer = () => {
       postLetterStore.setNickname(nickname);
     }
     if (background && background !== postLetterStore.background) {
-      postLetterStore.setBackground(background);
+      postLetterStore.setBackground(decodeURIComponent(background));
     }
     if (capsule && capsule !== postLetterStore.capsule) {
       postLetterStore.setCapsule(capsule);

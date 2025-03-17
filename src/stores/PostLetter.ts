@@ -11,6 +11,7 @@ interface IPostLetterProps {
   postLastContent: string;
   background: string;
   capsule: string;
+  name: string;
 }
 
 interface IPostLetterActions {
@@ -24,6 +25,7 @@ interface IPostLetterActions {
   setPostLastContent: (postLastContent: string) => void;
   setBackground: (background: string) => void;
   setCapsule: (capsule: string) => void;
+  setName: (name: string) => void;
 }
 
 export type PostViewStore = IPostLetterProps & IPostLetterActions;
@@ -39,6 +41,7 @@ export const createPostLetterStore = (initialState?: IPostLetterProps) => {
     postLastContent: "",
     background: "",
     capsule: "",
+    name: "",
   };
   return createStore<PostViewStore>()(
     persist(
@@ -82,6 +85,7 @@ export const createPostLetterStore = (initialState?: IPostLetterProps) => {
           set({ postLastContent }),
         setBackground: (background: string) => set({ background }),
         setCapsule: (capsule: string) => set({ capsule }),
+        setName: (name: string) => set({ name }),
       }),
       { name: "post-letter", storage: createJSONStorage(() => sessionStorage) }
     )
