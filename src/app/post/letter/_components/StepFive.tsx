@@ -13,7 +13,16 @@ const StepFive = ({
   nextPage: () => void;
   backPage: () => void;
 }) => {
-  const { setPostLastContent } = usePostLetterStore((store) => store);
+  const {
+    setPostLastContent,
+    userId,
+    firstView,
+    lastView,
+    favoriteView,
+    postContent,
+    initPostLetter,
+    name,
+  } = usePostLetterStore((store) => store);
   const scheme = z.object({
     postContent: z.string().max(100, "최대 100자까지 입력 가능합니다."),
   });
@@ -25,16 +34,35 @@ const StepFive = ({
   } = useForm({
     resolver: zodResolver(scheme),
   });
-  const onSubmitPostContent: SubmitHandler<{ postContent: string }> = async (
+  const onSubmitPostLastContent: SubmitHandler<{ postContent: string }> = async (
     data
   ) => {
     setPostLastContent(data.postContent);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("userId", userId);
+    formData.append("firstView", JSON.stringify(firstView));
+    formData.append("lastView", JSON.stringify(lastView));
+    formData.append("favoriteView", favoriteView);
+    formData.append("postContent", postContent);
+    formData.append("postLastContent", data.postContent);
+
+    const response = await fetch("/api/post", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("제출 중 오류가 발생했습니다.");
+    }
+    console.log("제출 성공!");
+    initPostLetter();
     nextPage();
   };
   const watchPostContent = watch("postContent");
   return (
     <form
-      onSubmit={handleSubmit(onSubmitPostContent)}
+      onSubmit={handleSubmit(onSubmitPostLastContent)}
       className="w-full h-full justify-between flex flex-col items-center gap-4"
     >
       <div className="w-full flex flex-col gap-4">

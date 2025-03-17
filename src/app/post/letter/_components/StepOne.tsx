@@ -1,7 +1,6 @@
 import PostLetterHeader from "@/components/letter/PostLetterHeader";
 import { Button } from "@/components/ui/button";
 import { usePostLetterStore } from "@/providers/PostLetterProvider";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 const viewList = [
@@ -55,17 +54,20 @@ const viewList = [
   },
 ];
 
-const StepOne = ({ nextPage }: { nextPage: () => void }) => {
-  const { nickname, firstView, setFirstView, initPostLetter } =
-    usePostLetterStore((store) => store);
+const StepOne = ({
+  nextPage,
+  backPage,
+}: {
+  nextPage: () => void;
+  backPage: () => void;
+}) => {
+  const { nickname, firstView, setFirstView } = usePostLetterStore(
+    (store) => store
+  );
   const onClickItem = (view: string) => {
     setFirstView(view);
   };
-  const router = useRouter();
-  const backPage = () => {
-    initPostLetter();
-    router.back();
-  };
+
   return (
     <div className="w-full h-full justify-between flex flex-col items-center gap-4">
       <div className="w-full flex flex-col gap-4">
