@@ -1,10 +1,16 @@
 import React from "react";
 import Image from "next/image";
 
-const PostLetterHeader = ({ backPage }: { backPage: () => void }) => {
+const PostLetterHeader = ({
+  backPage,
+  className,
+}: {
+  backPage: () => void;
+  className?: string;
+}) => {
   return (
-    <header className="flex w-full">
-      <button title="뒤로가기" onClick={backPage}>
+    <header className={`flex w-full ${className}`}>
+      <button title="뒤로가기" onClick={backPage} className="cursor-pointer">
         <Image
           src={"/icons/back_icon.svg"}
           width={40}
