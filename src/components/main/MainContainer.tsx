@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import OnboardingContainer from "../onboarding/OnboardingContainer";
 import { useFirstVisitorStore } from "@/providers/FirstVisitorProvider";
 import { useAuthStore } from "@/providers/AuthProvider";
-import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import MainCapsule from "./MainCapsule";
 import Link from "next/link";
@@ -20,16 +19,15 @@ const MainContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const firstVisitorStore = useFirstVisitorStore((store) => store);
   const authStore = useAuthStore((store) => store);
-  const router = useRouter();
+
   const handleFirstVisit = () => {
     firstVisitorStore.setFirstVisitor(true);
   };
   useEffect(() => {
     setIsLoading(false);
   }, []);
-  
+
   if (isLoading) return null;
-  if (!authStore.isLogin) return router.push("login");
   if (firstVisitorStore.firstVisitor) {
     return <OnboardingContainer handleFirstVisitor={handleFirstVisit} />;
   }
