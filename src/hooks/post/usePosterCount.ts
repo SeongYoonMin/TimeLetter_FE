@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-export const usePosterCount = ({ uniqueId }: { uniqueId: string }) => {
+export const usePosterCount = (uniqueId: string) => {
   return useQuery<{ postCount: number; newPostCount: number }>({
     queryKey: [uniqueId],
     queryFn: async () => {

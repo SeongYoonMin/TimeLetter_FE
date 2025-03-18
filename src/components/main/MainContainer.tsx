@@ -52,9 +52,7 @@ const MainContainer = () => {
 };
 
 const CapsuleContainer = ({ capsule, uniqueId }: IAuthProps) => {
-  const { data, isLoading } = usePosterCount({
-    uniqueId,
-  });
+  const { data, isLoading } = usePosterCount(uniqueId);
   if (isLoading) return null;
   if (!data) return null;
   return (
