@@ -3,10 +3,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 
 const RegisterBox = dynamic(
-  () => import("@/components/register/RegisterContainer"),
-  {
-    ssr: false,
-  }
+  () => import("@/components/register/RegisterContainer")
 );
 
 const RegisterPage = () => {
