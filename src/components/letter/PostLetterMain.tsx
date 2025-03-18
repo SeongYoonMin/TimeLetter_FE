@@ -1,13 +1,13 @@
 "use client";
 
-import StepFive from "@/app/post/letter/_components/StepFive";
-import StepFour from "@/app/post/letter/_components/StepFour";
-import StepLast from "@/app/post/letter/_components/StepLast";
-import StepName from "@/app/post/letter/_components/StepName";
-import StepOne from "@/app/post/letter/_components/StepOne";
-import StepStart from "@/app/post/letter/_components/StepStart";
-import StepThree from "@/app/post/letter/_components/StepThree";
-import StepTwo from "@/app/post/letter/_components/StepTwo";
+import StepFive from "@/app/post/_components/StepFive";
+import StepFour from "@/app/post/_components/StepFour";
+import StepLast from "@/app/post/_components/StepLast";
+import StepName from "@/app/post/_components/StepName";
+import StepOne from "@/app/post/_components/StepOne";
+import StepStart from "@/app/post/_components/StepStart";
+import StepThree from "@/app/post/_components/StepThree";
+import StepTwo from "@/app/post/_components/StepTwo";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useCallback, useState } from "react";
 
