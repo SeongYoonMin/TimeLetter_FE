@@ -51,10 +51,8 @@ const MainContainer = () => {
   );
 };
 
-const CapsuleContainer = ({ nickName, capsule, uniqueId }: IAuthProps) => {
+const CapsuleContainer = ({ capsule, uniqueId }: IAuthProps) => {
   const { data, isLoading } = usePosterCount({
-    nickname: nickName,
-    capsule,
     uniqueId,
   });
   if (isLoading) return null;
@@ -68,8 +66,8 @@ const CapsuleContainer = ({ nickName, capsule, uniqueId }: IAuthProps) => {
         capsule={capsule}
       />
       <Link
-        href={data.newPostCount > 0 ? "/post" : "#none"}
-        className="text-center"
+        href={data.newPostCount > 0 ? "/letter" : "#none"}
+        className="text-center relative z-10"
       >
         {data.newPostCount > 0
           ? "지금까지 받은 편지 보기"
