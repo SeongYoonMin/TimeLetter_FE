@@ -1,4 +1,4 @@
-import PostLetterHeader from "@/components/letter/PostLetterHeader";
+import DefaultHeader from "@/components/layout/DefaultHeader";
 import { Button } from "@/components/ui/button";
 import { usePostLetterStore } from "@/providers/PostLetterProvider";
 import React from "react";
@@ -20,7 +20,7 @@ const StepThree = ({
   return (
     <div className="w-full h-full justify-between flex flex-col items-center gap-4">
       <div className="w-full flex flex-col gap-4">
-        <PostLetterHeader backPage={backPage} />
+        <DefaultHeader backPage={backPage} />
         <div className="flex flex-col items-center gap-2">
           <h2 className="text-header text-center">
             <span className="text-primary">
