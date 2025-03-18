@@ -16,6 +16,7 @@ export async function GET(req: NextRequest) {
       status: 401,
     });
   }
+  
   const decryptId = await actionDecrypt(authUniqueId.replace("Bearer ", ""));
   const [postCount, newPostCount] = await Promise.all([
     prisma.post.count({
@@ -26,12 +27,12 @@ export async function GET(req: NextRequest) {
     prisma.post.count({
       where: {
         authorId: decryptId,
-        newPost: true,
+        readCheck: false,
       },
     }),
   ]);
   if (!postCount) {
-    return new Response(JSON.stringify({ postCount, newPostCount }), {
+    return new Response("편지가 없습니다.", {
       headers: { "content-type": "application/json" },
       status: 200,
     });
@@ -51,7 +52,10 @@ export async function POST(req: Request) {
   const favoriteView = formData.get("favoriteView") as string;
   const postContent = formData.get("postContent") as string;
   const postLastContent = formData.get("postLastContent") as string;
+
   const decryptId = await actionDecrypt(userId);
+  console.log(typeof firstView);
+
   const checkUser = await prisma.capsuler.findFirst({
     where: {
       userId: decryptId,
@@ -72,7 +76,6 @@ export async function POST(req: Request) {
         firstView,
         latestView: lastView,
         favoriteView,
-        readCheck: false,
         authorId: decryptId,
       },
     });
