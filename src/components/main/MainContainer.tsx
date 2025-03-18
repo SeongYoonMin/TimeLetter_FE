@@ -28,7 +28,7 @@ const MainContainer = () => {
   }, []);
 
   if (isLoading) return null;
-  if (firstVisitorStore.firstVisitor) {
+  if (firstVisitorStore.firstVisitor && !authStore.isLogin) {
     return <OnboardingContainer handleFirstVisitor={handleFirstVisit} />;
   }
   return (
