@@ -8,6 +8,7 @@ import * as z from "zod";
 import { toast } from "react-toastify";
 import { useAuthStore } from "@/providers/AuthProvider";
 import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 
 interface ILoginInput {
   userId: string;
@@ -39,6 +40,7 @@ const LoginForm = () => {
   const toastify = toast;
   const watchUserId = watch("userId");
   const watchPassword = watch("password");
+  const cookies = new Cookies();
   const onLoginSubmit: SubmitHandler<ILoginInput> = async (data) => {
     const formData = new FormData();
     formData.append("userId", data.userId);
@@ -48,7 +50,6 @@ const LoginForm = () => {
       body: formData,
     });
     if (response.ok) {
-      
       const user: {
         id: number;
         nickName: string;
@@ -58,6 +59,7 @@ const LoginForm = () => {
         uniqueId: string;
       } = await response.json();
       authStore.setAuthorization({ isLogin: true, ...user });
+      cookies.set("isLogin", "true", { path: "/" });
       router.push("/");
     } else {
       const getError: { error: string } = await response.json();
