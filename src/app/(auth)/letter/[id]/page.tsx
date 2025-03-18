@@ -1,3 +1,4 @@
+import LetterDetailContainer from "@/components/letter/LetterDetailContainer";
 import React from "react";
 
 export default async function Page({
@@ -6,5 +7,9 @@ export default async function Page({
   params: Promise<{ id: number }>;
 }) {
   const id = (await params).id;
-  return <div>Page</div>;
+  return (
+    <>
+      <LetterDetailContainer id={id} />
+    </>
+  );
 }
