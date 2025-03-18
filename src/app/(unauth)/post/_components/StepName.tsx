@@ -35,7 +35,6 @@ const StepName = ({
   });
   const onSubmitName: SubmitHandler<{ name: string }> = async (data) => {
     setName(data.name);
-    console.log(data.name);
     nextPage();
   };
   const watchName = watch("name");
