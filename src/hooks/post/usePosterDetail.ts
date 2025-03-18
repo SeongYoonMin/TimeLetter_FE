@@ -2,14 +2,14 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-export const usePosterDetail = ({
+export const usePosterDetail = <T>({
   id,
   uniqueId,
 }: {
   id: number;
   uniqueId: string;
 }) => {
-  return useQuery({
+  return useQuery<T>({
     queryKey: ["post", id],
     queryFn: async () => {
       const response = await fetch(`/api/post/${id}`, {
