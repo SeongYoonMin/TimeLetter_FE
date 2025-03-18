@@ -13,42 +13,59 @@ const fadeVariants = {
 const steps = [
   {
     title: "내 첫인상",
-    imgSrc: "/img/first-step.png",
+    imgSrc: "/img/onboarding_first.png",
     description: () => (
-      <>
-        <p>나 첫인상 어땠어?</p>
-        <p>라는 질문을 해본 적 있나요?</p>
-      </>
+      <p className="text-center whitespace-pre-wrap">
+        나 첫인상 어땠어?
+        <br />
+        라는 질문을
+        <br />
+        해본 적 있나요?
+      </p>
     ),
   },
   {
     title: "추억속의 나",
-    imgSrc: "/img/second-step.png",
+    imgSrc: "/img/onboarding_second.png",
     description: () => (
-      <>
-        <p>추억속의 나는 친구들에게</p>
-        <p>어떤 모습이었을까요?</p>
-      </>
+      <p className="text-center">
+        추억속의 나는
+        <br />
+        친구들에게
+        <br />
+        어떤 모습이었을까요?
+      </p>
     ),
   },
   {
     title: "5년전 10년 전의 나",
-    imgSrc: "/img/third-step.png",
+    imgSrc: "/img/onboarding_third.png",
     description: () => (
-      <>
-        <p>5년전 10년전의 나에게 친구</p>
-        <p>들이 보내는 편지를 받아보세요.</p>
-      </>
+      <p className="text-center">
+        나에 대해
+        <br /> 깊게 알게 된 친구에게
+        <br /> 편지를 받아보세요
+      </p>
     ),
   },
   {
     title: "나만의 타임 캡슐",
-    imgSrc: "/img/fourth-step.png",
+    imgSrc: "/img/onboarding_fourth.png",
     description: () => (
-      <>
-        <p>나만의 타임 캡슐을 만들면</p>
-        <p>편지를 받을 수 있어요.</p>
-      </>
+      <p className="text-center">
+        타임캡슐을 만들면
+        <br /> 편지를 받을 수 있어요
+      </p>
+    ),
+  },
+  {
+    title: "내 타임 캡슐 만들기",
+    imgSrc: "/img/onboarding_fifth.png",
+    description: () => (
+      <p className="text-center">
+        타임캡슐을 만들면
+        <br /> 편지를 받을 수 있어요
+      </p>
     ),
   },
 ];
@@ -62,7 +79,7 @@ const OnboardingContainer = ({
   const nextStep = () =>
     setStep((prev) => Math.min(prev + 1, steps.length - 1));
   return (
-    <div className="flex items-center h-full justify-between flex-col px-5 py-10">
+    <div className="flex items-center h-full justify-between flex-col px-5 py-10 bg-default-gradient">
       {/* Stepper UI */}
       <div className="flex items-center justify-center gap-1 text-[#441606] text-body">
         <p>{step + 1}</p>
@@ -85,7 +102,7 @@ const OnboardingContainer = ({
             height={100}
             alt={steps[step].title}
           />
-          <div className="bg-[#FFDBA8] w-full px-4 py-3 rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px] text-[#441606] text-header">
+          <div className=" w-full px-4 py-3 rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px] text-[#441606] text-header">
             {steps[step].description()}
           </div>
         </motion.div>
@@ -93,12 +110,12 @@ const OnboardingContainer = ({
 
       {/* 버튼 */}
 
-      {step !== 3 ? (
+      {step !== steps.length - 1 ? (
         <button
           onClick={nextStep}
           type="button"
           disabled={step === steps.length - 1}
-          className="bg-[#FF9225] w-full h-[68px] text-body flex items-center justify-center rounded-[20px] text-white"
+          className="bg-[#FF9225] w-full h-[68px] text-body flex items-center justify-center rounded-[20px] text-white cursor-pointer"
         >
           다음
         </button>
@@ -106,7 +123,7 @@ const OnboardingContainer = ({
         <button
           type="button"
           onClick={handleFirstVisitor}
-          className="bg-[#FF9225] w-full h-[68px] text-body flex items-center justify-center rounded-[20px] text-white"
+          className="bg-[#FF9225] w-full h-[68px] text-body flex items-center justify-center rounded-[20px] text-white cursor-pointer"
         >
           시작하기
         </button>

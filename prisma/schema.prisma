@@ -15,11 +15,12 @@ datasource db {
 
 model Capsuler {
   id         Int      @id @default(autoincrement())
+  uniqueId   String   @map("unique_id")
   nickName   String   @map("nick_name")
   userId     String   @unique @map("user_id")
   password   String
   background String?
-  ribbon     String?
+  capsule    String?
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
   posts      Post[]
@@ -36,6 +37,7 @@ model Post {
   favoriteView     String    @map("favorite_view")
   readCheck        Boolean   @map("read_check")
   createdAt        DateTime  @default(now())
-  author           Capsuler? @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId         Int?
+  newPost          Boolean   @default(true) @map("new_post")
+  author           Capsuler? @relation(fields: [authorId], references: [userId], onDelete: Cascade)
+  authorId         String?
 }
