@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo } from "react";
-import PostLetterMain from "./PostLetterMain";
+import PostLetterMain from "../post/PostLetterMain";
 import { usePostLetterStore } from "@/providers/PostLetterProvider";
 import { useSearchParams } from "next/navigation";
 

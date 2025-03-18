@@ -1,6 +1,6 @@
 "use client";
 
-import PostLetterHeader from "@/components/letter/PostLetterHeader";
+import DefaultHeader from "@/components/layout/DefaultHeader";
 import { Button } from "@/components/ui/button";
 import { usePostLetterStore } from "@/providers/PostLetterProvider";
 import Image from "next/image";
@@ -16,7 +16,7 @@ const StepStart = ({ backPage }: { backPage: () => void }) => {
   
   return (
     <div className="w-full flex flex-col justify-between items-center relative pt-5 pb-4 px-5 box-border h-full">
-      <PostLetterHeader backPage={backPage} className="relative z-10" />
+      <DefaultHeader backPage={backPage} className="relative z-10" />
       <Image
         alt={background}
         src={background}

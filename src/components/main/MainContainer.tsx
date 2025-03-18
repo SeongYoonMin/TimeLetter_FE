@@ -4,21 +4,16 @@ import React, { useEffect, useState } from "react";
 import OnboardingContainer from "../onboarding/OnboardingContainer";
 import { useFirstVisitorStore } from "@/providers/FirstVisitorProvider";
 import { useAuthStore } from "@/providers/AuthProvider";
-import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
-import { useQuery } from "@tanstack/react-query";
 import MainCapsule from "./MainCapsule";
 import Link from "next/link";
+import { usePosterCount } from "@/hooks/post";
+import { useRouter } from "next/navigation";
 
 interface IAuthProps {
   nickName: string;
   capsule: string;
   uniqueId: string;
-}
-
-interface IPostCountProps {
-  postCount: number;
-  newPostCount: number;
 }
 
 const MainContainer = () => {
@@ -31,14 +26,12 @@ const MainContainer = () => {
   };
   useEffect(() => {
     setIsLoading(false);
-  }, []);
-  useEffect(() => {
-    if (!authStore.isLogin && !isLoading && !firstVisitorStore.firstVisitor) {
+    if (!authStore.isLogin) {
       router.push("/login");
     }
-  }, [authStore.isLogin, router, isLoading, firstVisitorStore.firstVisitor]);
+  }, [authStore.isLogin, router]);
   if (isLoading) return null;
-  if (firstVisitorStore.firstVisitor) {
+  if (firstVisitorStore.firstVisitor && !authStore.isLogin) {
     return <OnboardingContainer handleFirstVisitor={handleFirstVisit} />;
   }
   return (
@@ -61,18 +54,11 @@ const MainContainer = () => {
   );
 };
 
-const CapsuleContainer = ({ nickName, capsule, uniqueId }: IAuthProps) => {
-  const { data, isLoading } = useQuery<IPostCountProps>({
-    queryKey: [nickName, capsule, uniqueId],
-    queryFn: async () => {
-      const res = await fetch("/api/post", {
-        headers: {
-          Authorization: `Bearer ${uniqueId}`,
-        },
-      });
-      return await res.json();
-    },
-  });
+const CapsuleContainer = ({ capsule, uniqueId }: IAuthProps) => {
+  const { data, isLoading } = usePosterCount<{
+    postCount: number;
+    newPostCount: number;
+  }>(uniqueId);
   if (isLoading) return null;
   if (!data) return null;
   return (
@@ -83,7 +69,10 @@ const CapsuleContainer = ({ nickName, capsule, uniqueId }: IAuthProps) => {
         newCount={data.newPostCount}
         capsule={capsule}
       />
-      <Link href={data.newPostCount > 0 ? "/post" : "#none"} className="text-center">
+      <Link
+        href={data.newPostCount > 0 ? "/letter" : "#none"}
+        className="text-center relative z-10"
+      >
         {data.newPostCount > 0
           ? "지금까지 받은 편지 보기"
           : "지금 바로 공유하고\n첫 편지를 받아보세요"}
