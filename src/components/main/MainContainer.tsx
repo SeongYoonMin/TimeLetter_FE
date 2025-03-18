@@ -6,19 +6,14 @@ import { useFirstVisitorStore } from "@/providers/FirstVisitorProvider";
 import { useAuthStore } from "@/providers/AuthProvider";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
-import { useQuery } from "@tanstack/react-query";
 import MainCapsule from "./MainCapsule";
 import Link from "next/link";
+import { usePosterCount } from "@/hooks/post";
 
 interface IAuthProps {
   nickName: string;
   capsule: string;
   uniqueId: string;
-}
-
-interface IPostCountProps {
-  postCount: number;
-  newPostCount: number;
 }
 
 const MainContainer = () => {
@@ -32,12 +27,9 @@ const MainContainer = () => {
   useEffect(() => {
     setIsLoading(false);
   }, []);
-  useEffect(() => {
-    if (!authStore.isLogin && !isLoading && !firstVisitorStore.firstVisitor) {
-      router.push("/login");
-    }
-  }, [authStore.isLogin, router, isLoading, firstVisitorStore.firstVisitor]);
+  
   if (isLoading) return null;
+  if (!authStore.isLogin) return router.push("login");
   if (firstVisitorStore.firstVisitor) {
     return <OnboardingContainer handleFirstVisitor={handleFirstVisit} />;
   }
@@ -62,16 +54,10 @@ const MainContainer = () => {
 };
 
 const CapsuleContainer = ({ nickName, capsule, uniqueId }: IAuthProps) => {
-  const { data, isLoading } = useQuery<IPostCountProps>({
-    queryKey: [nickName, capsule, uniqueId],
-    queryFn: async () => {
-      const res = await fetch("/api/post", {
-        headers: {
-          Authorization: `Bearer ${uniqueId}`,
-        },
-      });
-      return await res.json();
-    },
+  const { data, isLoading } = usePosterCount({
+    nickname: nickName,
+    capsule,
+    uniqueId,
   });
   if (isLoading) return null;
   if (!data) return null;
@@ -83,7 +69,10 @@ const CapsuleContainer = ({ nickName, capsule, uniqueId }: IAuthProps) => {
         newCount={data.newPostCount}
         capsule={capsule}
       />
-      <Link href={data.newPostCount > 0 ? "/post" : "#none"} className="text-center">
+      <Link
+        href={data.newPostCount > 0 ? "/post" : "#none"}
+        className="text-center"
+      >
         {data.newPostCount > 0
           ? "지금까지 받은 편지 보기"
           : "지금 바로 공유하고\n첫 편지를 받아보세요"}
