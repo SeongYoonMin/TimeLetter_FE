@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import MainCapsule from "./MainCapsule";
 import Link from "next/link";
 import { usePosterCount } from "@/hooks/post";
+import { useRouter } from "next/navigation";
 
 interface IAuthProps {
   nickName: string;
@@ -19,14 +20,16 @@ const MainContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const firstVisitorStore = useFirstVisitorStore((store) => store);
   const authStore = useAuthStore((store) => store);
-
+  const router = useRouter();
   const handleFirstVisit = () => {
     firstVisitorStore.setFirstVisitor(true);
   };
   useEffect(() => {
     setIsLoading(false);
-  }, []);
-
+    if (!authStore.isLogin) {
+      router.push("/login");
+    }
+  }, [authStore.isLogin, router]);
   if (isLoading) return null;
   if (firstVisitorStore.firstVisitor && !authStore.isLogin) {
     return <OnboardingContainer handleFirstVisitor={handleFirstVisit} />;
