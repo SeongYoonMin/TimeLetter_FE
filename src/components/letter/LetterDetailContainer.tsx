@@ -42,8 +42,8 @@ const LetterDetailContainer = ({ id }: { id: number }) => {
           <div className="flex flex-col items-start justify-between p-6 bg-[#F7F7F7] rounded-[20px] w-full break-keep gap-3">
             <p>
               {firstContent.length === 1
-                ? singleContent(firstContent[0])
-                : multipleContent(firstContent)}
+                ? singleContent(firstContent[0], true)
+                : multipleContent(firstContent, true)}
             </p>
             <p>
               {lastContent.length === 1
