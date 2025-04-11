@@ -1,7 +1,11 @@
-// 편지 상세 조회를 불러오는 페이지
-
 import { useQuery } from "@tanstack/react-query";
 
+/**
+ * usePosterDetail 는 포스터의 상세 정보를 불러오는 API hooks입니다.
+ * @param id 포스터의 id
+ * @param uniqueId 유저 고유 아이디
+ * @returns 
+ */
 export const usePosterDetail = <T>({
   id,
   uniqueId,
