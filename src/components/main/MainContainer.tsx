@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 import OnboardingContainer from "../onboarding/OnboardingContainer";
 import { useFirstVisitorStore } from "@/providers/FirstVisitorProvider";
 import { useAuthStore } from "@/providers/AuthProvider";
-import { Button } from "../ui/button";
 import MainCapsule from "./MainCapsule";
 import Link from "next/link";
 import { usePosterCount } from "@/hooks/post";
 import { useRouter } from "next/navigation";
+import LetterShareButton from "../letter/LetterShareButton";
 
 interface IAuthProps {
   nickName: string;
@@ -49,7 +49,7 @@ const MainContainer = () => {
         capsule={authStore.capsule}
         uniqueId={authStore.uniqueId}
       />
-      <Button variant={"secondary"}>친구에게 공유하고 편지 받기</Button>
+      <LetterShareButton />
     </section>
   );
 };
