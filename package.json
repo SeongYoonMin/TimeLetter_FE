@@ -2,7 +2,7 @@
   "name": "time_letter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://seongyoonmin.github.io/TimeLetter_FE/",
+  "homepage": "https://time-letter-gamma.vercel.app/",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
