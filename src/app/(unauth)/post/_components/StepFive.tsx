@@ -1,4 +1,4 @@
-import PostLetterHeader from "@/components/letter/PostLetterHeader";
+import DefaultHeader from "@/components/layout/DefaultHeader";
 import { Button } from "@/components/ui/button";
 import { usePostLetterStore } from "@/providers/PostLetterProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +24,7 @@ const StepFive = ({
     name,
   } = usePostLetterStore((store) => store);
   const scheme = z.object({
-    postContent: z.string().max(100, "최대 100자까지 입력 가능합니다."),
+    postLastContent: z.string().max(100, "최대 100자까지 입력 가능합니다."),
   });
   const {
     handleSubmit,
@@ -34,10 +34,10 @@ const StepFive = ({
   } = useForm({
     resolver: zodResolver(scheme),
   });
-  const onSubmitPostLastContent: SubmitHandler<{ postContent: string }> = async (
+  const onSubmitPostLastContent: SubmitHandler<{ postLastContent: string }> = async (
     data
   ) => {
-    setPostLastContent(data.postContent);
+    setPostLastContent(data.postLastContent);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("userId", userId);
@@ -45,13 +45,12 @@ const StepFive = ({
     formData.append("lastView", JSON.stringify(lastView));
     formData.append("favoriteView", favoriteView);
     formData.append("postContent", postContent);
-    formData.append("postLastContent", data.postContent);
+    formData.append("postLastContent", data.postLastContent);
 
     const response = await fetch("/api/post", {
       method: "POST",
       body: formData,
     });
-
     if (!response.ok) {
       throw new Error("제출 중 오류가 발생했습니다.");
     }
@@ -59,14 +58,14 @@ const StepFive = ({
     initPostLetter();
     nextPage();
   };
-  const watchPostContent = watch("postContent");
+  const watchPostContent = watch("postLastContent");
   return (
     <form
       onSubmit={handleSubmit(onSubmitPostLastContent)}
       className="w-full h-full justify-between flex flex-col items-center gap-4"
     >
       <div className="w-full flex flex-col gap-4">
-        <PostLetterHeader backPage={backPage} />
+        <DefaultHeader backPage={backPage} />
         <div className="flex flex-col items-center gap-2">
           <legend className="text-header text-center">
             그때의 친구에게
@@ -77,7 +76,7 @@ const StepFive = ({
         <label className="w-full relative">
           <textarea
             className="bg-[#F7F7F7] p-6 rounded-3xl relative z-0 w-full"
-            {...register("postContent")}
+            {...register("postLastContent")}
             rows={8}
             placeholder="내용을 입력해주세요."
           ></textarea>
@@ -85,12 +84,12 @@ const StepFive = ({
             {watchPostContent ? watchPostContent.length : 0}/100
           </span>
         </label>
-        {errors.postContent && (
-          <span className="text-red-500">{errors.postContent.message}</span>
+        {errors.postLastContent && (
+          <span className="text-red-500">{errors.postLastContent.message}</span>
         )}
       </div>
       <div className="w-full flex flex-col items-center justify-center gap-4">
-        <button className="text-[#8A8686]" onClick={nextPage}>
+        <button className="text-[#8A8686]" type="submit">
           건너뛰기
         </button>
         <Button type="submit" disabled={!watchPostContent}>

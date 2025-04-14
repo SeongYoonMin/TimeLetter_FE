@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const PostLetterHeader = ({
+const DefaultHeader = ({
   backPage,
   className,
 }: {
@@ -23,4 +23,4 @@ const PostLetterHeader = ({
   );
 };
 
-export default PostLetterHeader;
+export default DefaultHeader;

@@ -1,9 +1,9 @@
 "use client";
 
-import StepFour from "@/app/register/_components/StepFour";
-import StepOne from "@/app/register/_components/StepOne";
-import StepThree from "@/app/register/_components/StepThree";
-import StepTwo from "@/app/register/_components/StepTwo";
+import StepFour from "@/app/(unauth)/register/_components/StepFour";
+import StepOne from "@/app/(unauth)/register/_components/StepOne";
+import StepThree from "@/app/(unauth)/register/_components/StepThree";
+import StepTwo from "@/app/(unauth)/register/_components/StepTwo";
 import React, { useState, useCallback } from "react";
 import "swiper/css";
 import { motion, AnimatePresence } from "framer-motion";

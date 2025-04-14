@@ -35,9 +35,8 @@ model Post {
   firstView        String    @map("first_view")
   latestView       String    @map("latest_view")
   favoriteView     String    @map("favorite_view")
-  readCheck        Boolean   @map("read_check")
+  readCheck        Boolean   @default(false) @map("read_check")
   createdAt        DateTime  @default(now())
-  newPost          Boolean   @default(true) @map("new_post")
   author           Capsuler? @relation(fields: [authorId], references: [userId], onDelete: Cascade)
   authorId         String?
 }

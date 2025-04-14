@@ -1,4 +1,4 @@
-import PostLetterHeader from "@/components/letter/PostLetterHeader";
+import DefaultHeader from "@/components/layout/DefaultHeader";
 import { Button } from "@/components/ui/button";
 import { usePostLetterStore } from "@/providers/PostLetterProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,7 +38,7 @@ const StepFour = ({
       className="w-full h-full justify-between flex flex-col items-center gap-4"
     >
       <div className="w-full flex flex-col gap-4">
-        <PostLetterHeader backPage={backPage} />
+        <DefaultHeader backPage={backPage} />
         <div className="flex flex-col items-center gap-2">
           <legend className="text-header text-center">
             응원한다면 어떤말을
@@ -62,7 +62,7 @@ const StepFour = ({
         )}
       </div>
       <div className="w-full flex flex-col items-center justify-center gap-4">
-        <button className="text-[#8A8686]" onClick={nextPage}>
+        <button className="text-[#8A8686]" type="submit">
           건너뛰기
         </button>
         <Button type="submit" disabled={!watchPostContent}>

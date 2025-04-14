@@ -1,4 +1,4 @@
-import PostLetterHeader from "@/components/letter/PostLetterHeader";
+import DefaultHeader from "@/components/layout/DefaultHeader";
 import { Button } from "@/components/ui/button";
 import { usePostLetterStore } from "@/providers/PostLetterProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -35,14 +35,13 @@ const StepName = ({
   });
   const onSubmitName: SubmitHandler<{ name: string }> = async (data) => {
     setName(data.name);
-    console.log(data.name);
     nextPage();
   };
   const watchName = watch("name");
   return (
     <div className="w-full h-full justify-between flex flex-col items-center gap-4">
       <div className="w-full flex flex-col gap-4 h-full">
-        <PostLetterHeader backPage={backPage} />
+        <DefaultHeader backPage={backPage} />
         <form
           onSubmit={handleSubmit(onSubmitName)}
           className="flex flex-col items-center gap-2 p-5 flex-1 justify-between"
@@ -59,7 +58,7 @@ const StepName = ({
                 className="font-semibold p-6 bg-[#F7F7F7] placeholder:text-[#D2D2D2] text-[#5E5B5B] rounded-[20px] w-full"
               />
   
-              {name ? (
+              {watchName ? (
                 <p className="absolute top-1/2 inline-block right-[20px] -translate-y-1/2 text-[#D2D2D2]">{`${watchName.length}/8`}</p>
               ) : (
                 <p className="absolute top-1/2 inline-block right-[20px] -translate-y-1/2 text-[#D2D2D2]">{`0/8`}</p>

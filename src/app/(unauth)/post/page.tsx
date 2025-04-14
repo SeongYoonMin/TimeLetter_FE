@@ -1,4 +1,4 @@
-import PostLetterContainer from "@/components/letter/PostLetterContainer";
+import PostLetterContainer from "@/components/post/PostLetterContainer";
 import PostLetterProvider from "@/providers/PostLetterProvider";
 import React from "react";
 

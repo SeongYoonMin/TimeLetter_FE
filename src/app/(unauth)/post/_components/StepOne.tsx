@@ -1,4 +1,4 @@
-import PostLetterHeader from "@/components/letter/PostLetterHeader";
+import DefaultHeader from "@/components/layout/DefaultHeader";
 import { Button } from "@/components/ui/button";
 import { usePostLetterStore } from "@/providers/PostLetterProvider";
 import React from "react";
@@ -54,31 +54,31 @@ const viewList = [
   },
 ];
 
-const StepTwo = ({
+const StepOne = ({
   nextPage,
   backPage,
 }: {
   nextPage: () => void;
   backPage: () => void;
 }) => {
-  const { lastView, setLastView } = usePostLetterStore((store) => store);
+  const { nickname, firstView, setFirstView } = usePostLetterStore(
+    (store) => store
+  );
   const onClickItem = (view: string) => {
-    setLastView(view);
+    setFirstView(view);
   };
 
   return (
     <div className="w-full h-full justify-between flex flex-col items-center gap-4">
       <div className="w-full flex flex-col gap-4">
-        <PostLetterHeader backPage={backPage} />
+        <DefaultHeader backPage={backPage} />
         <div className="flex flex-col items-center gap-2">
           <h2 className="text-header text-center">
-            <span className="text-primary">
-              친해지고 나서
-              <br />
-              알게된 성격
-            </span>
-            중<br />
-            가까운 단어를 골라주세요
+            {nickname}님의
+            <br />
+            <span className="text-primary">첫인상</span>과 가까운 단어를
+            <br />
+            골라주세요
           </h2>
           <span className="text-xs text-[#8A8686] font-medium">
             복수선택 3개까지 가능
@@ -86,7 +86,7 @@ const StepTwo = ({
         </div>
         <ul className="grid grid-cols-3 gap-2 w-full">
           {viewList.map((item) => {
-            const isSelected = lastView.includes(item.view);
+            const isSelected = firstView.includes(item.view);
             return (
               <li key={item.id} className="col-span-1">
                 <button
@@ -105,11 +105,11 @@ const StepTwo = ({
           })}
         </ul>
       </div>
-      <Button onClick={nextPage} disabled={lastView.length === 0}>
+      <Button onClick={nextPage} disabled={firstView.length === 0}>
         다음
       </Button>
     </div>
   );
 };
 
-export default StepTwo;
+export default StepOne;

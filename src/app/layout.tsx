@@ -5,6 +5,15 @@ import QueryProvider from "@/providers/QueryProvider";
 import FirstVisitorProvider from "@/providers/FirstVisitorProvider";
 import localFont from "next/font/local";
 import { Metadata } from "next";
+import Script from "next/script";
+
+// global 전역함수 를 이용하여 kakao sdk 를 사용하기 위해 window.Kakao 를 선언
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Kakao: any;
+  }
+}
 
 const suitLocalFont = localFont({
   src: "./fonts/SUIT-Variable.woff2",
@@ -32,6 +41,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Script
+        src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.5/kakao.min.js"
+        integrity="sha384-dok87au0gKqJdxs7msEdBPNnKSRT+/mhTVzq+qOhcL464zXwvcrpjeWvyj1kCdq6"
+        crossOrigin="anonymous"
+      />
       <body className={suitLocalFont.className + " bg-[#F7F7F7]"}>
         <QueryProvider>
           <FirstVisitorProvider>
