@@ -19,7 +19,7 @@ const suitLocalFont = localFont({
   src: "./fonts/SUIT-Variable.woff2",
 });
 
-export const metaData: Metadata = {
+export const metadata: Metadata = {
   title: "타임레터 : 시간을 초월한 편지",
   description:
     "타임레터를 통해 서로 의미있는 편지를 보내고, 더 많은 따뜻한 순간을 만들어 보세요.",

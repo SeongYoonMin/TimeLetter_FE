@@ -2,11 +2,13 @@
   "name": "time_letter",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://seongyoonmin.github.io/TimeLetter_FE/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gh-pages": "gh-pages -d out"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
